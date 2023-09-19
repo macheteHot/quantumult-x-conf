@@ -39,9 +39,15 @@ if (url.includes('/admin/service/registration/validateDevice')) {
   }
 }
 
-$notify('emby', 'emby', JSON.stringify(modifyBody))
+$notify('emby', 'emby', JSON.stringify({ url, modifyBody }))
 
 $done({
   status: OK_STATUS,
-  body: JSON.stringify(modifyBody),
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Method': '*',
+    'Access-Control-Allow-Credentials': 'true',
+  },
+  body: JSON.stringify(modifyBody), // Optional.
 })
