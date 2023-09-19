@@ -1,4 +1,4 @@
-const globalVariablesList = ['$done', '$request', '$response']
+const globalVariablesList = ['$done', '$request', '$response', '$notify']
 module.exports = {
   root: true,
   env: {
