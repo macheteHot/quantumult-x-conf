@@ -6,7 +6,7 @@ let modifyBody = JSON.parse(body)
 
 if (url.includes('/admin/service/registration/validateDevice')) {
   modifyBody = {
-    cacheExpirationDays: 365,
+    cacheExpirationDays: 999,
     message: 'Device Valid',
     resultCode: 'GOOD',
   }
@@ -39,15 +39,8 @@ if (url.includes('/admin/service/registration/validateDevice')) {
   }
 }
 
-$notify('emby', 'emby', JSON.stringify({ url, modifyBody }))
-
 $done({
   status: OK_STATUS,
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Method': '*',
-    'Access-Control-Allow-Credentials': 'true',
-  },
-  body: JSON.stringify(modifyBody), // Optional.
+  headers: $response.headers,
+  body: JSON.stringify(modifyBody),
 })
